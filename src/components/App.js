@@ -1,34 +1,13 @@
 import importedLogo from "../images/header-logo.svg";
 import "../index.css";
 import Header from "./Header";
+import Main from "./Main";
 
 function App() {
   return (
     <div className="page">
       <Header logo={importedLogo} />
-      <main className="content">
-        <section className="profile">
-          <button className="profile__btn profile__btn_action_edit-avatar">
-            <img src="#" alt="Аватар." className="profile__avatar" />
-            <span className="profile__avatar-overlay"></span>
-          </button>
-          <div className="profile__info">
-            <h1 className="profile__name">Name</h1>
-            <button
-              className="profile__btn profile__btn_action_edit"
-              type="button"
-            ></button>
-            <p className="profile__about">About</p>
-          </div>
-          <button
-            className="profile__btn profile__btn_action_add"
-            type="button"
-          ></button>
-        </section>
-        <section>
-          <ul className="cards"></ul>
-        </section>
-      </main>
+      <Main />
       <footer className="footer">
         <p className="footer__copyright">@ 2020 Попов Алексей</p>
       </footer>
