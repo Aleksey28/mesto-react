@@ -1,4 +1,4 @@
-import "../index.css";
+import '../index.css';
 
 export default function Main() {
   return (
@@ -10,16 +10,10 @@ export default function Main() {
         </button>
         <div className="profile__info">
           <h1 className="profile__name">Name</h1>
-          <button
-            className="profile__btn profile__btn_action_edit"
-            type="button"
-          ></button>
+          <button className="profile__btn profile__btn_action_edit" type="button"></button>
           <p className="profile__about">About</p>
         </div>
-        <button
-          className="profile__btn profile__btn_action_add"
-          type="button"
-        ></button>
+        <button className="profile__btn profile__btn_action_add" type="button"></button>
       </section>
       <section>
         <ul className="cards"></ul>
