@@ -1,0 +1,15 @@
+.popup__avatar {
+  width: 100px;
+  height: 100px;
+  margin-right: 22px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__avatar {
+    margin-right: calc((100vw - 320px) / (600 - 320) * (22 - 15) + 15px);
+  }
+}
