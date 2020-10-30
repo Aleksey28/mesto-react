@@ -2,15 +2,14 @@ import importedLogo from "../images/header-logo.svg";
 import "../index.css";
 import Header from "./Header";
 import Main from "./Main";
+import Footer from "./Footer";
 
 function App() {
   return (
     <div className="page">
       <Header logo={importedLogo} />
       <Main />
-      <footer className="footer">
-        <p className="footer__copyright">@ 2020 Попов Алексей</p>
-      </footer>
+      <Footer />
 
       <div className="popup popup_type_edit-avatar">
         <form
