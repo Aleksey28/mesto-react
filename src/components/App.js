@@ -1,18 +1,11 @@
-import logo from "../images/header-logo.svg";
+import importedLogo from "../images/header-logo.svg";
 import "../index.css";
+import Header from "./Header";
 
 function App() {
   return (
     <div className="page">
-      <header className="header">
-        <a href="#">
-          <img
-            src={logo}
-            alt="Логотип страницы Место."
-            className="header__logo"
-          />
-        </a>
-      </header>
+      <Header logo={importedLogo} />
       <main className="content">
         <section className="profile">
           <button className="profile__btn profile__btn_action_edit-avatar">
