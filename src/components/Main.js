@@ -1,5 +1,6 @@
 import React from 'react';
 import '../index.css';
+import Card from './Card';
 
 import { apiObject } from '../utils/api.js';
 
@@ -18,21 +19,7 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
 
         setCards(
           cardListData.map((element) => {
-            return (
-              <li class="card" key={element._id}>
-                <button class="card__btn card__btn_action_trush" type="button"></button>
-                <img src={element.link} alt={element.name} class="card__image" />
-                <div class="card__footer">
-                  <h3 class="card__caption">{element.name}</h3>
-                  <div class="like card__like">
-                    <button class="like__btn" type="button"></button>
-                    <p class="like__count" title={element.likes.reduce((res, item) => (res += `${item.name}\n`), '')}>
-                      {element.likes.length}
-                    </p>
-                  </div>
-                </div>
-              </li>
-            );
+            return <Card card={element} />;
           }),
         );
       })
