@@ -1,8 +1,8 @@
 import '../index.css';
 
-export default function PopupWithForm({ title, name, children }) {
+export default function PopupWithForm({ title, name }) {
   return (
-    <div className={`popup popup_type_${name}`}>
+    <div className={`popup popup_type_${name}`} name={name}>
       <form className="popup__container popup__container_type_form" name="container" novalidate>
         <button className="popup__btn popup__btn_action_close" type="button"></button>
         <h2 className="popup__title">{title}</h2>
