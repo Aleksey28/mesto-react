@@ -21,6 +21,11 @@ function App() {
   const handleAddPlaceClick = () => {
     setIsAddPlacePopupOpen(true);
   };
+  const closeAllPopups = () => {
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+  };
 
   return (
     <div className="page">
@@ -35,16 +40,19 @@ function App() {
         title={propsPopupWithAddForm.title}
         name={propsPopupWithAddForm.name}
         isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
       />
       <PopupWithForm
         title={propsPopupWithEditForm.title}
         name={propsPopupWithEditForm.name}
         isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
       />
       <PopupWithForm
         title={propsPopupWithEditAvatarForm.title}
         name={propsPopupWithEditAvatarForm.name}
         isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
       />
 
       {/* <div className="popup popup_type_edit-avatar">
