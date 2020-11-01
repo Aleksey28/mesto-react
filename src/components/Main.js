@@ -4,7 +4,7 @@ import Card from './Card';
 
 import { apiObject } from '../utils/api.js';
 
-export default function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
+export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
   const [userName, setUserName] = React.useState('');
   const [userDescription, setUserDescription] = React.useState('');
   const [userAvatar, setUserAvatar] = React.useState('#');
@@ -19,7 +19,7 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
 
         setCards(
           cardListData.map((element) => {
-            return <Card card={element} />;
+            return <Card card={element} onCardClick={onCardClick} />;
           }),
         );
       })
