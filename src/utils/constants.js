@@ -10,18 +10,34 @@ export const propsPicturePopup = '.popup_type_show';
 export const propsPopupWithAddForm = {
   title: 'Новое место',
   name: 'add',
+  submitStates: {
+    static: 'Создать',
+    loading: 'Создание...',
+  },
 };
 export const propsPopupWithEditForm = {
   title: 'Редактировать профиль',
   name: 'edit',
+  submitStates: {
+    static: 'Сохранить',
+    loading: 'Сохранение...',
+  },
 };
 export const propsPopupWithEditAvatarForm = {
   title: 'Обновить аватар',
   name: 'edit-avatar',
+  submitStates: {
+    static: 'Сохранить',
+    loading: 'Сохранение...',
+  },
 };
 export const propsPopupWithConfirmForm = {
   title: 'Вы уверены?',
   name: 'confirm',
+  submitStates: {
+    static: 'Да',
+    loading: 'Удаление...',
+  },
 };
 
 export const propsPopupWithConfirm = '.popup_type_confirm';

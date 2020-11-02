@@ -38,6 +38,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setIsConfirmOpen(false);
     setIsImagePopupOpen(false);
   };
 
@@ -56,7 +57,9 @@ function App() {
       <PopupWithForm
         title={propsPopupWithAddForm.title}
         name={propsPopupWithAddForm.name}
+        submitStates={propsPopupWithAddForm.submitStates}
         isOpen={isAddPlacePopupOpen}
+        isLoad={false}
         onClose={closeAllPopups}
       >
         <input
@@ -85,7 +88,9 @@ function App() {
       <PopupWithForm
         title={propsPopupWithEditForm.title}
         name={propsPopupWithEditForm.name}
+        submitStates={propsPopupWithEditForm.submitStates}
         isOpen={isEditProfilePopupOpen}
+        isLoad={false}
         onClose={closeAllPopups}
       >
         <input
@@ -116,7 +121,9 @@ function App() {
       <PopupWithForm
         title={propsPopupWithEditAvatarForm.title}
         name={propsPopupWithEditAvatarForm.name}
+        submitStates={propsPopupWithEditAvatarForm.submitStates}
         isOpen={isEditAvatarPopupOpen}
+        isLoad={false}
         onClose={closeAllPopups}
       >
         <input
@@ -134,7 +141,9 @@ function App() {
       <PopupWithForm
         title={propsPopupWithConfirmForm.title}
         name={propsPopupWithConfirmForm.name}
+        submitStates={propsPopupWithConfirmForm.submitStates}
         isOpen={isConfirmOpen}
+        isLoad={false}
         onClose={closeAllPopups}
       />
 

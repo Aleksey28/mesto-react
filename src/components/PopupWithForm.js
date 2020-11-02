@@ -1,6 +1,6 @@
 import '../index.css';
 
-export default function PopupWithForm({ title, name, isOpen, onClose, children }) {
+export default function PopupWithForm({ title, name, isOpen, isLoad, onClose, submitStates, children }) {
   // debugger;
   return (
     <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`} name={name}>
@@ -9,8 +9,7 @@ export default function PopupWithForm({ title, name, isOpen, onClose, children }
         <h2 className="popup__title">{title}</h2>
         {children}
         <button className="popup__btn popup__btn_action_submit" type="submit">
-          <span className="popup__btn-label popup__btn-label_type_static popup__btn-label_visible">Сохранить</span>
-          <span className="popup__btn-label popup__btn-label_type_doing">Сохранение...</span>
+          {!isLoad ? submitStates.static : submitStates.loading}
         </button>
       </form>
     </div>
