@@ -95,7 +95,7 @@ function App() {
       >
         <input
           type="text"
-          class="popup__input popup__input_type_name"
+          className="popup__input popup__input_type_name"
           name="name"
           id="edit-name-input"
           placeholder="Заголовок профиля"
@@ -103,10 +103,10 @@ function App() {
           maxlength="40"
           required
         />
-        <span class="popup__error" id="edit-name-input-error"></span>
+        <span className="popup__error" id="edit-name-input-error"></span>
         <input
           type="text"
-          class="popup__input popup__input_type_about"
+          className="popup__input popup__input_type_about"
           name="about"
           id="about-input"
           placeholder="Описание профиля"
@@ -114,7 +114,7 @@ function App() {
           maxlength="200"
           required
         />
-        <span class="popup__error" id="about-input-error"></span>
+        <span className="popup__error" id="about-input-error"></span>
       </PopupWithForm>
 
       {/* Popup for open form to edit avatar */}
@@ -128,13 +128,13 @@ function App() {
       >
         <input
           type="url"
-          class="popup__input popup__input_type_link"
+          className="popup__input popup__input_type_link"
           name="link"
           id="link-input-edit"
           placeholder="Ссылка на картинку"
           required
         />
-        <span class="popup__error" id="link-input-edit-error"></span>
+        <span className="popup__error" id="link-input-edit-error"></span>
       </PopupWithForm>
 
       {/* Popup for open form to confirm action */}

@@ -12,23 +12,19 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
 
   React.useEffect(() => {
     Promise.all([apiObject.getUserData(), apiObject.getCardList()])
-      .then(([{ name, about, avatar }, cardListData]) => {
+      .then(([{ name, about, avatar, _id }, cardListData]) => {
         setUserName(name);
         setUserDescription(about);
         setUserAvatar(avatar);
 
         setCards(
           cardListData.map((element) => {
-            return <Card card={element} onCardClick={onCardClick} />;
+            return <Card card={element} userID={_id} onCardClick={onCardClick} />;
           }),
         );
       })
       .catch((error) => {
-        // const elementError = document.createElement('p');
-        // elementError.textContent = error;
-        // elementError.classList.add('error');
-        // document.body.append(elementError);
-        console.log('Error');
+        console.log(error);
       });
   });
 
