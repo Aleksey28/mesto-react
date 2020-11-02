@@ -1,10 +1,10 @@
 import '../index.css';
 
-export default function Header(props) {
+export default function Header({ logo }) {
   return (
     <header className="header">
       <a href="#">
-        <img src={props.logo} alt="Логотип страницы Место." className="header__logo" />
+        <img src={logo} alt="Логотип страницы Место." className="header__logo" />
       </a>
     </header>
   );
