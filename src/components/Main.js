@@ -19,7 +19,7 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
 
         setCards(
           cardListData.map((element) => {
-            return <Card card={element} userID={_id} onCardClick={onCardClick} />;
+            return <Card card={element} userID={_id} onCardClick={onCardClick} key={element._id} />;
           }),
         );
       })

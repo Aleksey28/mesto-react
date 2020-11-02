@@ -1,12 +1,3 @@
-export const cardListSelector = '.cards';
-export const selectorPicturePopup = '.popup_type_show';
-export const selectorPopupWithAddForm = '.popup_type_add';
-export const selectorPopupWithEditForm = '.popup_type_edit';
-export const selectorPopupWithEditAvatarForm = '.popup_type_edit-avatar';
-export const selectorPopupWithConfirm = '.popup_type_confirm';
-
-export const propsPicturePopup = '.popup_type_show';
-
 export const propsPopupWithAddForm = {
   title: 'Новое место',
   name: 'add',
@@ -38,28 +29,6 @@ export const propsPopupWithConfirmForm = {
     static: 'Да',
     loading: 'Удаление...',
   },
-};
-
-export const propsPopupWithConfirm = '.popup_type_confirm';
-
-export const inputSelectorsAddForm = {
-  name: '.popup__input_type_name',
-  link: '.popup__input_type_link',
-};
-
-export const inputSelectorsEditForm = {
-  name: '.popup__input_type_name',
-  about: '.popup__input_type_about',
-};
-
-export const inputSelectorsEditAvatarForm = {
-  link: '.popup__input_type_link',
-};
-
-export const selectorsUserInfo = {
-  selectorName: '.profile__name',
-  selectorAbout: '.profile__about',
-  selectorAvatar: '.profile__avatar',
 };
 
 export const validationSettings = {

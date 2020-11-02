@@ -6,7 +6,7 @@ export default function Card({ card, userID, onCardClick }) {
   };
 
   return (
-    <li className="card" key={card._id}>
+    <li className="card">
       {userID === card.owner._id ? <button className="card__btn card__btn_action_trush" type="button"></button> : ''}
       <img src={card.link} alt={card.name} className="card__image" onClick={handleClick} />
       <div className="card__footer">

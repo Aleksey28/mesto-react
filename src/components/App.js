@@ -68,8 +68,8 @@ function App() {
           name="name"
           id="add-name-input"
           placeholder="Название"
-          minlength="2"
-          maxlength="30"
+          minLength="2"
+          maxLength="30"
           required
         />
         <span className="popup__error" id="add-name-input-error"></span>
@@ -99,8 +99,8 @@ function App() {
           name="name"
           id="edit-name-input"
           placeholder="Заголовок профиля"
-          minlength="2"
-          maxlength="40"
+          minLength="2"
+          maxLength="40"
           required
         />
         <span className="popup__error" id="edit-name-input-error"></span>
@@ -110,8 +110,8 @@ function App() {
           name="about"
           id="about-input"
           placeholder="Описание профиля"
-          minlength="2"
-          maxlength="200"
+          minLength="2"
+          maxLength="200"
           required
         />
         <span className="popup__error" id="about-input-error"></span>
