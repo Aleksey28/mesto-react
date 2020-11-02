@@ -6,6 +6,7 @@ export const selectorPopupWithEditAvatarForm = '.popup_type_edit-avatar';
 export const selectorPopupWithConfirm = '.popup_type_confirm';
 
 export const propsPicturePopup = '.popup_type_show';
+
 export const propsPopupWithAddForm = {
   title: 'Новое место',
   name: 'add',
@@ -18,6 +19,11 @@ export const propsPopupWithEditAvatarForm = {
   title: 'Обновить аватар',
   name: 'edit-avatar',
 };
+export const propsPopupWithConfirmForm = {
+  title: 'Вы уверены?',
+  name: 'confirm',
+};
+
 export const propsPopupWithConfirm = '.popup_type_confirm';
 
 export const inputSelectorsAddForm = {
