@@ -5,6 +5,7 @@
 
   width: calc(100% - 199px * 2);
   min-width: calc(1024px - 100px * 2);
+  max-width: calc(1280px - 199px * 2);
   padding: 40px 0 66px;
 }
 
