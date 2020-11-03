@@ -26,7 +26,7 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, []);
 
   return (
     <main className="content">

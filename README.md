@@ -19,4 +19,4 @@
 
 ## Ссылка на GitHub Pages
 
-https://aleksey28.github.io/mesto/
+https://aleksey28.github.io/mesto-react/
