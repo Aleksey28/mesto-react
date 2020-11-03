@@ -1,5 +1,3 @@
-import '../index.css';
-
 export default function Card({ card, userID, onCardClick }) {
   const handleClick = () => {
     onCardClick(card);

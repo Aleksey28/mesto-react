@@ -1,7 +1,4 @@
-import '../index.css';
-
 export default function PopupWithForm({ title, name, isOpen, isLoad, onClose, submitStates, children }) {
-  // debugger;
   return (
     <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`} name={name}>
       <form className="popup__container popup__container_type_form" name="container" noValidate>

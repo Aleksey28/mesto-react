@@ -1,5 +1,3 @@
-import '../index.css';
-
 export default function Header({ logo }) {
   return (
     <header className="header">

@@ -1,6 +1,5 @@
 import React from 'react';
 import importedLogo from '../images/header-logo.svg';
-import '../index.css';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';

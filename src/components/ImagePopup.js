@@ -1,4 +1,3 @@
-import '../index.css';
 export default function ImagePopup({ card, isOpen, onClose }) {
   return (
     <div className={`popup popup_type_show ${isOpen ? 'popup_opened' : ''}`}>

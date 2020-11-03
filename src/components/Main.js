@@ -1,5 +1,4 @@
 import React from 'react';
-import '../index.css';
 import Card from './Card';
 
 import { apiObject } from '../utils/api.js';
