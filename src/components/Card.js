@@ -2,11 +2,15 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { useContext } from 'react';
 import cn from 'classnames';
 
-export default function Card({ card, onCardClick }) {
+export default function Card({ card, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
 
   const handleClick = () => {
     onCardClick(card);
+  };
+
+  const handleClickLike = () => {
+    onCardLike(card);
   };
 
   return (
@@ -21,6 +25,7 @@ export default function Card({ card, onCardClick }) {
         <div className="like card__like">
           <button
             className={cn('like__btn', { like__btn_active: card.likes.some((item) => item._id === currentUser._id) })}
+            onClick={handleClickLike}
             type="button"
           ></button>
           <p className="like__count" title={card.likes.reduce((res, item) => (res += `${item.name}\n`), '')}>

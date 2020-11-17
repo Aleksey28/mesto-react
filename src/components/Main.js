@@ -5,19 +5,36 @@ import { apiObject } from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
-  const [cardList, setCardsList] = React.useState([]);
+  const [cards, setCards] = React.useState([]);
   const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
     apiObject
       .getCardList()
       .then((data) => {
-        setCardsList(data);
+        setCards(data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  const handleCardLike = (card) => {
+    //Снова проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some((item) => item._id === currentUser._id);
+
+    //Отправляем запрос в API и получаем обновленные данные карточки
+    apiObject
+      .toggleCardLike(card._id, !isLiked)
+      .then((newCard) => {
+        //формируем новый массив на основе имеющегося, подставляя в него новую карточку
+        const newCards = cards.map((item) => (item._id === card._id ? newCard : item));
+
+        //обновляем стейт
+        setCards(newCards);
+      })
+      .catch(console.log);
+  };
 
   return (
     <main className="content">
@@ -35,8 +52,8 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
       </section>
       <section>
         <ul className="cards">
-          {cardList.map((item) => {
-            return <Card card={item} onCardClick={onCardClick} key={item._id} />;
+          {cards.map((item) => {
+            return <Card card={item} onCardClick={onCardClick} onCardLike={handleCardLike} key={item._id} />;
           })}
         </ul>
       </section>

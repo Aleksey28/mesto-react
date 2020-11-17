@@ -29,7 +29,7 @@ function App() {
       .then((data) => {
         setCurrentUser(data);
       })
-      .catch((error) => console.log);
+      .catch(console.log);
   }, []);
 
   const handleEditAvatarClick = () => {
