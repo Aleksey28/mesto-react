@@ -12,7 +12,12 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
     apiObject
       .getCardList()
       .then((data) => {
-        setCards(data);
+        const newCards = [];
+
+        data.forEach((item) => {
+          newCards.unshift(item);
+        });
+        setCards(newCards);
       })
       .catch((error) => {
         console.log(error);
