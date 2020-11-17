@@ -162,7 +162,7 @@ function App() {
         {/* Popup which shows full image*/}
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
       </div>
-    </CurrentUserContext>
+    </CurrentUserContext.Provider>
   );
 }
 

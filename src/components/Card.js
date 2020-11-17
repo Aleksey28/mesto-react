@@ -1,17 +1,26 @@
-export default function Card({ card, userID, onCardClick }) {
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { useContext } from 'react';
+
+export default function Card({ card, onCardClick }) {
+  const currentUser = useContext(CurrentUserContext);
+
   const handleClick = () => {
     onCardClick(card);
   };
 
   return (
     <li className="card">
-      {userID === card.owner._id ? <button className="card__btn card__btn_action_trush" type="button"></button> : ''}
+      {currentUser._id === card.owner._id ? (
+        <button className="card__btn card__btn_action_trush" type="button"></button>
+      ) : (
+        ''
+      )}
       <img src={card.link} alt={card.name} className="card__image" onClick={handleClick} />
       <div className="card__footer">
         <h3 className="card__caption">{card.name}</h3>
         <div className="like card__like">
           <button
-            className={`like__btn ${card.likes.some((item) => item._id === userID) ? 'like__btn_active' : ''}`}
+            className={`like__btn ${card.likes.some((item) => item._id === currentUser._id) ? 'like__btn_active' : ''}`}
             type="button"
           ></button>
           <p className="like__count" title={card.likes.reduce((res, item) => (res += `${item.name}\n`), '')}>
