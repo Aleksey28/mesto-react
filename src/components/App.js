@@ -11,6 +11,7 @@ import {
   propsPopupWithEditAvatarForm,
   propsPopupWithConfirmForm,
 } from '../utils/constants.js';
+import { apiObject } from '../utils/api.js';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -19,6 +20,16 @@ function App() {
   const [isConfirmOpen, setIsConfirmOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
+  const [currentUser, setCurrentUser] = React.useState({});
+
+  React.useEffect(() => {
+    apiObject
+      .getUserData()
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch((error) => console.log);
+  }, []);
 
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
