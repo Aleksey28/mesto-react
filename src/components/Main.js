@@ -5,18 +5,14 @@ import { apiObject } from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
-  const [cards, setCards] = React.useState([]);
+  const [cardList, setCardsList] = React.useState([]);
   const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
     apiObject
       .getCardList()
-      .then((cardListData) => {
-        setCards(
-          cardListData.map((element) => {
-            return <Card card={element} onCardClick={onCardClick} key={element._id} />;
-          }),
-        );
+      .then((data) => {
+        setCardsList(data);
       })
       .catch((error) => {
         console.log(error);
@@ -38,7 +34,11 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
         <button className="profile__btn profile__btn_action_add" type="button" onClick={onAddPlace}></button>
       </section>
       <section>
-        <ul className="cards">{cards}</ul>
+        <ul className="cards">
+          {cardList.map((item) => {
+            return <Card card={item} onCardClick={onCardClick} key={item._id} />;
+          })}
+        </ul>
       </section>
     </main>
   );
