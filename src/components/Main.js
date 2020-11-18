@@ -8,6 +8,7 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
   const [cards, setCards] = React.useState([]);
   const currentUser = React.useContext(CurrentUserContext);
 
+  //Загружаем данные карточек один раз при сборке
   React.useEffect(() => {
     apiObject
       .getCardList()
