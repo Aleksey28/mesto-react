@@ -1,53 +1,18 @@
 import React from 'react';
 import Card from './Card';
 
-import { apiObject } from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
-  const [cards, setCards] = React.useState([]);
+export default function Main({
+  onEditAvatar,
+  onEditProfile,
+  onAddPlace,
+  cards,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+}) {
   const currentUser = React.useContext(CurrentUserContext);
-
-  //Загружаем данные карточек один раз при сборке
-  React.useEffect(() => {
-    apiObject
-      .getCardList()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  //функция обработчик установки/снятия лайка
-  const handleCardLike = (card) => {
-    //Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((item) => item._id === currentUser._id);
-
-    //Отправляем запрос в API и получаем обновленные данные карточки
-    apiObject
-      .toggleCardLike(card._id, !isLiked)
-      .then((newCard) => {
-        //формируем новый массив на основе имеющегося, подставляя в него новую карточку
-        const newCards = cards.map((item) => (item._id === card._id ? newCard : item));
-
-        //обновляем стейт
-        setCards(newCards);
-      })
-      .catch(console.log);
-  };
-
-  //функция обработчик удаления карточки
-  const handleCardDelete = (card) => {
-    apiObject
-      .deleteCard(card._id)
-      .then(() => {
-        const newCards = cards.filter((item) => item._id !== card._id);
-        setCards(newCards);
-      })
-      .catch(console.log);
-  };
 
   return (
     <main className="content">
@@ -70,8 +35,8 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
               <Card
                 card={item}
                 onCardClick={onCardClick}
-                onCardLike={handleCardLike}
-                onCardDelete={handleCardDelete}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
                 key={item._id}
               />
             );
