@@ -13,18 +13,14 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
     apiObject
       .getCardList()
       .then((data) => {
-        const newCards = [];
-
-        data.forEach((item) => {
-          newCards.unshift(item);
-        });
-        setCards(newCards);
+        setCards(data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
+  //функция обработчик установки/снятия лайка
   const handleCardLike = (card) => {
     //Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some((item) => item._id === currentUser._id);
@@ -37,6 +33,17 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
         const newCards = cards.map((item) => (item._id === card._id ? newCard : item));
 
         //обновляем стейт
+        setCards(newCards);
+      })
+      .catch(console.log);
+  };
+
+  //функция обработчик удаления карточки
+  const handleCardDelete = (card) => {
+    apiObject
+      .deleteCard(card._id)
+      .then(() => {
+        const newCards = cards.filter((item) => item._id !== card._id);
         setCards(newCards);
       })
       .catch(console.log);
@@ -59,7 +66,15 @@ export default function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardCl
       <section>
         <ul className="cards">
           {cards.map((item) => {
-            return <Card card={item} onCardClick={onCardClick} onCardLike={handleCardLike} key={item._id} />;
+            return (
+              <Card
+                card={item}
+                onCardClick={onCardClick}
+                onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
+                key={item._id}
+              />
+            );
           })}
         </ul>
       </section>

@@ -2,7 +2,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { useContext } from 'react';
 import cn from 'classnames';
 
-export default function Card({ card, onCardClick, onCardLike }) {
+export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext);
 
   const handleClick = () => {
@@ -13,10 +13,14 @@ export default function Card({ card, onCardClick, onCardLike }) {
     onCardLike(card);
   };
 
+  const handleClickDelete = () => {
+    onCardDelete(card);
+  };
+
   return (
     <li className="card">
       {currentUser._id === card.owner._id && (
-        <button className="card__btn card__btn_action_trush" type="button"></button>
+        <button className="card__btn card__btn_action_trush" type="button" onClick={handleClickDelete}></button>
       )}
 
       <img src={card.link} alt={card.name} className="card__image" onClick={handleClick} />
