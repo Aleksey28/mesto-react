@@ -36,28 +36,26 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         type="text"
         className="popup__input popup__input_type_name"
         name="name"
-        id="edit-name-input"
+        id="add-name-input"
         value={name}
-        placeholder="Заголовок профиля"
+        placeholder="Название"
         minLength="2"
-        maxLength="40"
+        maxLength="30"
         required
         onChange={handleChangeName}
       />
-      <span className="popup__error" id="edit-name-input-error"></span>
+      <span className="popup__error" id="add-name-input-error"></span>
       <input
-        type="text"
-        className="popup__input popup__input_type_about"
-        name="about"
-        id="about-input"
+        type="url"
+        className="popup__input popup__input_type_link"
+        name="link"
+        id="link-input-add"
         value={link}
-        placeholder="Описание профиля"
-        minLength="2"
-        maxLength="200"
+        placeholder="Ссылка на картинку"
         required
         onChange={handleChangeLink}
       />
-      <span className="popup__error" id="about-input-error"></span>
+      <span className="popup__error" id="link-input-add-error"></span>
     </PopupWithForm>
   );
 }
