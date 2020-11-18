@@ -6,7 +6,8 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
-import { propsPopupWithAddForm, propsPopupWithEditAvatarForm, propsPopupWithConfirmForm } from '../utils/constants.js';
+import EditAvatarPopup from './EditAvatarPopup';
+import { propsPopupWithAddForm, propsPopupWithConfirmForm } from '../utils/constants.js';
 import { apiObject } from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -59,6 +60,16 @@ function App() {
       .catch(console.log);
   };
 
+  const handleUpdateAvatar = (data) => {
+    apiObject
+      .setAvatar(data)
+      .then((data) => {
+        setCurrentUser(data);
+        closeAllPopups();
+      })
+      .catch(console.log);
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -103,26 +114,7 @@ function App() {
         </PopupWithForm>
 
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-
-        {/* Popup for open form to edit avatar */}
-        <PopupWithForm
-          title={propsPopupWithEditAvatarForm.title}
-          name={propsPopupWithEditAvatarForm.name}
-          submitStates={propsPopupWithEditAvatarForm.submitStates}
-          isOpen={isEditAvatarPopupOpen}
-          isLoad={false}
-          onClose={closeAllPopups}
-        >
-          <input
-            type="url"
-            className="popup__input popup__input_type_link"
-            name="link"
-            id="link-input-edit"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <span className="popup__error" id="link-input-edit-error"></span>
-        </PopupWithForm>
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
 
         {/* Popup for open form to confirm action */}
         <PopupWithForm
