@@ -5,12 +5,9 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
-import {
-  propsPopupWithAddForm,
-  propsPopupWithEditForm,
-  propsPopupWithEditAvatarForm,
-  propsPopupWithConfirmForm,
-} from '../utils/constants.js';
+import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
+import { propsPopupWithAddForm, propsPopupWithConfirmForm } from '../utils/constants.js';
 import { apiObject } from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -51,6 +48,26 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsConfirmOpen(false);
     setIsImagePopupOpen(false);
+  };
+
+  const handleUpdateUser = (data) => {
+    apiObject
+      .setUserData(data)
+      .then((data) => {
+        setCurrentUser(data);
+        closeAllPopups();
+      })
+      .catch(console.log);
+  };
+
+  const handleUpdateAvatar = (data) => {
+    apiObject
+      .setAvatar(data)
+      .then((data) => {
+        setCurrentUser(data);
+        closeAllPopups();
+      })
+      .catch(console.log);
   };
 
   return (
@@ -96,58 +113,8 @@ function App() {
           <span className="popup__error" id="link-input-add-error"></span>
         </PopupWithForm>
 
-        {/* Popup for open form to edit profile */}
-        <PopupWithForm
-          title={propsPopupWithEditForm.title}
-          name={propsPopupWithEditForm.name}
-          submitStates={propsPopupWithEditForm.submitStates}
-          isOpen={isEditProfilePopupOpen}
-          isLoad={false}
-          onClose={closeAllPopups}
-        >
-          <input
-            type="text"
-            className="popup__input popup__input_type_name"
-            name="name"
-            id="edit-name-input"
-            placeholder="Заголовок профиля"
-            minLength="2"
-            maxLength="40"
-            required
-          />
-          <span className="popup__error" id="edit-name-input-error"></span>
-          <input
-            type="text"
-            className="popup__input popup__input_type_about"
-            name="about"
-            id="about-input"
-            placeholder="Описание профиля"
-            minLength="2"
-            maxLength="200"
-            required
-          />
-          <span className="popup__error" id="about-input-error"></span>
-        </PopupWithForm>
-
-        {/* Popup for open form to edit avatar */}
-        <PopupWithForm
-          title={propsPopupWithEditAvatarForm.title}
-          name={propsPopupWithEditAvatarForm.name}
-          submitStates={propsPopupWithEditAvatarForm.submitStates}
-          isOpen={isEditAvatarPopupOpen}
-          isLoad={false}
-          onClose={closeAllPopups}
-        >
-          <input
-            type="url"
-            className="popup__input popup__input_type_link"
-            name="link"
-            id="link-input-edit"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <span className="popup__error" id="link-input-edit-error"></span>
-        </PopupWithForm>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
 
         {/* Popup for open form to confirm action */}
         <PopupWithForm
