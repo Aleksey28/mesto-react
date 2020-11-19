@@ -3,12 +3,10 @@ import importedLogo from '../images/header-logo.svg';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
-import { propsPopupWithConfirmForm } from '../utils/constants.js';
 import { apiObject } from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -201,15 +199,6 @@ function App() {
           onUpdateAvatar={handleUpdateAvatar}
         />
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
-
-        <PopupWithForm
-          title={propsPopupWithConfirmForm.title}
-          name={propsPopupWithConfirmForm.name}
-          submitStates={propsPopupWithConfirmForm.submitStates}
-          isOpen={isConfirmOpen}
-          isLoad={isLoading}
-          onClose={closeAllPopups}
-        />
       </div>
     </CurrentUserContext.Provider>
   );
