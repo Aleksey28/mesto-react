@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PopupWithForm from './PopupWithForm';
 import { propsPopupWithAddForm } from '../utils/constants.js';
 
-export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+export default function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }) {
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
 
@@ -28,7 +28,7 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       name={propsPopupWithAddForm.name}
       submitStates={propsPopupWithAddForm.submitStates}
       isOpen={isOpen}
-      isLoad={false}
+      isLoad={isLoading}
       onClose={onClose}
       onSubmit={handleSubmit}
     >

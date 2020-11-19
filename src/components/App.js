@@ -22,9 +22,11 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   //Загружаем данные карточек один раз при сборке
   useEffect(() => {
+    // setIsLoading(!isLoading);
     apiObject
       .getCardList()
       .then((data) => {
@@ -32,17 +34,24 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        // setIsLoading(!isLoading);
       });
   }, []);
 
   //Загружаем данные пользователя
   useEffect(() => {
+    // setIsLoading(!isLoading);
     apiObject
       .getUserData()
       .then((data) => {
         setCurrentUser(data);
       })
-      .catch(console.log);
+      .catch(console.log)
+      .finally(() => {
+        // setIsLoading(!isLoading);
+      });
   }, []);
 
   //Обработчик нажатия на аватарку
@@ -83,25 +92,33 @@ function App() {
   //Обработчик обновления данных пользователя
   const handleUpdateUser = (data) => {
     //Отправляем новые данные на сервер
+    setIsLoading(true);
     apiObject
       .setUserData(data)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
       })
-      .catch(console.log);
+      .catch(console.log)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   //Обработчик обновления аватара
   const handleUpdateAvatar = (data) => {
     //Отправляем новые данные
+    setIsLoading(true);
     apiObject
       .setAvatar(data)
       .then((data) => {
         setCurrentUser(data);
         closeAllPopups();
       })
-      .catch(console.log);
+      .catch(console.log)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   //функция обработчик установки/снятия лайка
@@ -137,13 +154,17 @@ function App() {
   //Обработчик добавления новой карточки
   const handleAddPlace = (card) => {
     //Отправляем запрос на добавление карточки
+    setIsLoading(true);
     apiObject
       .addCard(card)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch(console.log);
+      .catch(console.log)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -161,9 +182,24 @@ function App() {
         />
         <Footer />
 
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace} />
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          isLoading={isLoading}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlace}
+        />
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          isLoading={isLoading}
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
+        />
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          isLoading={isLoading}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
+        />
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
 
         <PopupWithForm
@@ -171,7 +207,7 @@ function App() {
           name={propsPopupWithConfirmForm.name}
           submitStates={propsPopupWithConfirmForm.submitStates}
           isOpen={isConfirmOpen}
-          isLoad={false}
+          isLoad={isLoading}
           onClose={closeAllPopups}
         />
       </div>

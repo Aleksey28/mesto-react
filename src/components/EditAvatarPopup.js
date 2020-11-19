@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import PopupWithForm from './PopupWithForm';
 import { propsPopupWithEditAvatarForm } from '../utils/constants.js';
 
-export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+export default function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAvatar }) {
   const avatarRef = useRef();
 
   const handleSubmit = (evt) => {
@@ -18,7 +18,7 @@ export default function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       name={propsPopupWithEditAvatarForm.name}
       submitStates={propsPopupWithEditAvatarForm.submitStates}
       isOpen={isOpen}
-      isLoad={false}
+      isLoad={isLoading}
       onClose={onClose}
       onSubmit={handleSubmit}
     >

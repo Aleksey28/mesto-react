@@ -3,7 +3,7 @@ import PopupWithForm from './PopupWithForm';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { propsPopupWithEditForm } from '../utils/constants.js';
 
-export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
+export default function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const currentUser = useContext(CurrentUserContext);
@@ -37,7 +37,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       name={propsPopupWithEditForm.name}
       submitStates={propsPopupWithEditForm.submitStates}
       isOpen={isOpen}
-      isLoad={false}
+      isLoad={isLoading}
       onClose={onClose}
       onSubmit={handleSubmit}
     >
