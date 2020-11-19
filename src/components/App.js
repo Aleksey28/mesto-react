@@ -9,6 +9,7 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import { apiObject } from '../utils/api.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import Confirm from './Confirm';
 
 function App() {
   //Создаем стейты
@@ -138,15 +139,20 @@ function App() {
   };
 
   //функция обработчик удаления карточки
-  const handleCardDelete = (card) => {
+  const handleCardDelete = () => {
     //Отправляем запрос на удаление карточки
+    setIsLoading(true);
     apiObject
-      .deleteCard(card._id)
+      .deleteCard(selectedCard._id)
       .then(() => {
-        const newCards = cards.filter((item) => item._id !== card._id);
+        const newCards = cards.filter((item) => item._id !== selectedCard._id);
         setCards(newCards);
+        closeAllPopups();
       })
-      .catch(console.log);
+      .catch(console.log)
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   //Обработчик добавления новой карточки
@@ -165,6 +171,14 @@ function App() {
       });
   };
 
+  //Обработчик нажатия на кнопку удаления
+  const handleClickCardDelete = (card) => {
+    //Указываем текущую карточку, чтобы её удалить
+    setSelectedCard(card);
+    //Закрываем попап
+    setIsConfirmOpen(true);
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -176,7 +190,7 @@ function App() {
           cards={cards}
           onCardClick={handleCardClick}
           onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
+          onCardDelete={handleClickCardDelete}
         />
         <Footer />
 
@@ -199,6 +213,8 @@ function App() {
           onUpdateAvatar={handleUpdateAvatar}
         />
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
+
+        <Confirm isOpen={isConfirmOpen} isLoading={isLoading} onClose={closeAllPopups} onSubmit={handleCardDelete} />
       </div>
     </CurrentUserContext.Provider>
   );
